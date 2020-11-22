@@ -69,7 +69,7 @@ $(document).ready(function () {
 
             })
 
-            var fiveDayQueryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=0a9a4df09118ecfa80161ac660502a6e`;
+            var fiveDayQueryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=0a9a4df09118ecfa80161ac660502a6e&units=imperial`;
             // date, temp, humidity, icon
 
             $.ajax({
