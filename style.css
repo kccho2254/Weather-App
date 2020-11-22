@@ -1,3 +1,27 @@
-.card-body {
-    color: burlywood;
+
+div.col-md-3 {
+    margin-bottom: 1.5rem;
+}
+
+section#todayWeather.col-md-3 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+div.row.card{
+    margin: 1rem;
+    padding: 1rem;
+}
+
+ul {
+ padding-left: 1.5rem;
+}
+
+button#search-button.btn.btn-primary.mt-1{
+    margin-top:0rem!important;
+    margin-left:.2rem;
+}
+
+p {
+    column
 }
