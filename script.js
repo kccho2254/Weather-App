@@ -80,20 +80,19 @@ $(document).ready(function () {
                 console.log(res.list[0]);
                 for (i = 0; i < 5; i++) {
                    
-                    // var imageLocation = image.attr('src', '${res.list[i+0].weather[0].icon}.png');
+                    // var image = res.list[i*8].weather.icon;
+                    // var imageLocation = image.setAttribute('src', `https://openweathermap.org/img/wn/${image}@2x.png`);
                     
-                    // var image = res.list[i+0].weather.icon;
-                    // image.attr("src", `https://openweathermap.org/img/wn/${image}@2x.png`);
+                    // // image.setAttribute("src", `https://openweathermap.org/img/wn/${image}@2x.png`);
                     
-                    // $("<img>").append(image);
+                    // $('#fiveDay').append($("<img>").append(imageLocation));
 
 
-                    console.log(res.list[i+0].dt_txt);
+                    console.log(res.list[i+0].dt_txt[i*8]);
                     console.log(res.list[i+0].main.temp);
                     console.log(res.list[i+0].main.humidity);
-                
 
-                    var fiveDay = $("<ul>").text(res.list[i+0].dt_txt + " Temperature: " + res.list[i+0].main.temp +"°F + Humidity: "+ res.list[i+0].main.humidity + "%");
+                    var fiveDay = $("<ul>").text(res.list[i*8].dt_txt + " Temperature: " + res.list[i*8].main.temp +"°F + Humidity: "+ res.list[i*8].main.humidity + "%");
                   
                     $('#fiveDay').append(fiveDay);
 
