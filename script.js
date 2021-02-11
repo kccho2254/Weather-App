@@ -1,14 +1,10 @@
-//make a for loop that loops through an array for each day of the week/temperature/humidity/wind speed/uv index
-//five day forecast
-//html doesn't need to be extensive
-
 $(document).ready(function () {
-    //var queryURL
-    //  holds the API key
-    //  console log response.name, response.main.temp/humidity/speed
-    //  ${response.main.temp} + 'degrees F'
-    //  do the same for humidity and wind speed
-    //  add a CSS class to all three of these 
+    // var queryURL
+    // holds the API key
+    // console log response.name, response.main.temp/humidity/speed
+    // ${response.main.temp} + 'degrees F'
+    // do the same for humidity and wind speed
+    // add a CSS class to all three of these
 
 
     // function for getting the forecast (five day forecast)
@@ -26,10 +22,7 @@ $(document).ready(function () {
 
         var queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=0a9a4df09118ecfa80161ac660502a6e&units=imperial`
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (res) {
+        $.ajax({url: queryURL, method: "GET"}).then(function (res) {
             console.log(res);
 
             // var cardBody = $('div').addClass('card-body');
@@ -42,22 +35,21 @@ $(document).ready(function () {
             $("#todayWeather").append(cityName, feelsLike, humidity, temp);
 
 
-            var uvQueryURL = `http://api.openweathermap.org/data/2.5/uvi?lat=${res.coord.lat}&lon=${res.coord.lon}&appid=0a9a4df09118ecfa80161ac660502a6e`;
+            var uvQueryURL = `http://api.openweathermap.org/data/2.5/uvi?lat=${
+                res.coord.lat
+            }&lon=${
+                res.coord.lon
+            }&appid=0a9a4df09118ecfa80161ac660502a6e`;
 
             console.log(res.coord.lat);
             console.log(res.coord.lon);
 
-            $.ajax({
-                url: uvQueryURL,
-                method: "GET"
-
-            }).then(function (res) {
+            $.ajax({url: uvQueryURL, method: "GET"}).then(function (res) {
 
                 if (res.value > 7) {
                     var uvIndex = $("<ul>").text("UV index is: " + res.value).addClass('text-danger');
                     $("#todayWeather").append(uvIndex);
-                }
-                else if (res.value > 4 && res.value < 7) {
+                } else if (res.value > 4 && res.value < 7) {
                     var uvIndex = $("<ul>").text("UV index is: " + res.value).addClass('text-warning');
                     $("#todayWeather").append(uvIndex);
                 }
@@ -65,39 +57,30 @@ $(document).ready(function () {
                     var uvIndex = $("<ul>").text("UV index is: " + res.value).addClass('text-success');
                     $("#todayWeather").append(uvIndex);
                 }
-
-
             })
 
             var fiveDayQueryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=0a9a4df09118ecfa80161ac660502a6e&units=imperial`;
             // date, temp, humidity, icon
 
-            $.ajax({
-                url: fiveDayQueryURL,
-                method: "GET"
-
-            }).then(function (res) {
+            $.ajax({url: fiveDayQueryURL, method: "GET"}).then(function (res) {
                 console.log(res.list[0]);
-                for (i = 0; i < 5; i++) {
-                   
+                for (i = 0; i < 5; i ++) {
+
                     // var image = res.list[i*8].weather.icon;
                     // var imageLocation = image.setAttribute('src', `https://openweathermap.org/img/wn/${image}@2x.png`);
-                    
+
                     // // image.setAttribute("src", `https://openweathermap.org/img/wn/${image}@2x.png`);
-                    
+
                     // $('#fiveDay').append($("<img>").append(imageLocation));
 
 
-                    console.log(res.list[i+0].dt_txt[i*8]);
-                    console.log(res.list[i+0].main.temp);
-                    console.log(res.list[i+0].main.humidity);
+                    console.log(res.list[i + 0].dt_txt[i * 8]);
+                    console.log(res.list[i + 0].main.temp);
+                    console.log(res.list[i + 0].main.humidity);
 
-                    var fiveDay = $("<ul>").text(res.list[i*8].dt_txt + " Temperature: " + res.list[i*8].main.temp +"°F + Humidity: "+ res.list[i*8].main.humidity + "%");
-                  
+                    var fiveDay = $("<ul>").text(res.list[i * 8].dt_txt + " Temperature: " + res.list[i * 8].main.temp + "°F + Humidity: " + res.list[i * 8].main.humidity + "%");
+
                     $('#fiveDay').append(fiveDay);
-
-
-
                 }
             })
 
